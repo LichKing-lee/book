@@ -1,0 +1,1 @@
+INSERT INTO member(member_id, password, role) VALUES('lcy0202', 'CRYPTO::123456', 'NORMAL');
