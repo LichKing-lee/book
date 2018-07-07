@@ -1,5 +1,8 @@
 openapi:
-  kakao: KakaoAK 1260ebdda741b8d4e807602bcdf000e7
+  kakao:
+    api-config:
+      key: KakaoAK 1260ebdda741b8d4e807602bcdf000e7
+      url: https://dapi.kakao.com/v2/search/book
 spring:
   h2:
     console:
