@@ -22,7 +22,7 @@ public class HistoryController {
 	}
 
 	@RequestMapping("/history")
-	public HistoriesDto test(@AuthenticationPrincipal LoginUserDetails loginUserDetails) {
+	public HistoriesDto get(@AuthenticationPrincipal LoginUserDetails loginUserDetails) {
 		List<History> histories = historyService.getHistories(loginUserDetails.getId());
 
 		// List<History>로 리턴해도되지만 추후 API 확장성을 위해 List를 쥐고있는 DTO 이용

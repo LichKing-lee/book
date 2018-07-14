@@ -1,13 +1,12 @@
-package com.yong.book.history.dto;
+package com.yong.book.bookmark.dto;
 
 import java.util.List;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class HistoriesDto {
-	List<HistoryDto> histories;
+public class BookmarksDto {
+	private List<BookmarkDto> bookmarks;
 }
