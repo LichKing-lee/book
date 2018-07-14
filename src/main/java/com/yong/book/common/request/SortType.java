@@ -7,13 +7,13 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum SortType {
 	TITLE("title"),
-	DATE("insert_datetime");
+	DATE("insertDatetime");
 
 	private final String column;
 
-	public static SortType of(String pivot) {
+	public static SortType of(String column) {
 		for(SortType type : values()) {
-			if(type.column.equals(pivot)) {
+			if(type.column.equals(column)) {
 				return type;
 			}
 		}

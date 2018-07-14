@@ -53,7 +53,7 @@ public class BookmarkControllerTest {
 		// 조회(삭제확인)
 		mockMvc.perform(get("/bookmark")
 			.param("page", "0")
-			.param("sort", "title"))
+			.param("sort", "insertDatetime"))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.bookmarks.length()").value(0));
 	}
