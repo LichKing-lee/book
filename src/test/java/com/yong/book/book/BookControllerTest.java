@@ -26,8 +26,8 @@ public class BookControllerTest {
 	}
 
 	@Test
-	public void find() throws Exception {
-		mockMvc.perform(get("/book/find")
+	public void search() throws Exception {
+		mockMvc.perform(get("/book/search")
 		.param("page", "1")
 		.param("size", "2")
 		.param("category", "903")

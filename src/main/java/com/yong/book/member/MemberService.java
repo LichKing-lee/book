@@ -14,6 +14,10 @@ public class MemberService {
 
 	public Optional<Member> getMemberAsOptional(String memberId) {
 		// TODO repository에서부터 Optional 되는지 확인
-		return Optional.ofNullable(memberRepository.findByMemberId(memberId));
+		return Optional.ofNullable(getMember(memberId));
+	}
+
+	public Member getMember(String memberId) {
+		return memberRepository.findByMemberId(memberId);
 	}
 }

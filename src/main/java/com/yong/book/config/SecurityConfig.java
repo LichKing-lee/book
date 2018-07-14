@@ -16,6 +16,7 @@ import com.yong.book.login.LoginUserDetailsService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity webSecurity) {
+		webSecurity.ignoring().antMatchers("/h2-console", "/h2-console/**");
 	}
 
 	@Override
