@@ -4,7 +4,9 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 
 import com.yong.book.member.Member;
+import lombok.Getter;
 
+@Getter
 public class LoginUserDetails extends User {
 	private Long id;
 

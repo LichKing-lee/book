@@ -1,4 +1,4 @@
-package com.yong.book.book.history;
+package com.yong.book.history;
 
 import java.time.LocalDateTime;
 
@@ -8,6 +8,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -26,6 +27,7 @@ public class History {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
+	@JoinColumn(name = "member_id", referencedColumnName = "member_id")
 	private Member member;
 	@Column
 	private String title;

@@ -8,8 +8,8 @@ import com.yong.book.book.api.request.BookRequest;
 import com.yong.book.book.api.response.BookResponse;
 import com.yong.book.book.api.response.Document;
 import com.yong.book.book.exception.BookNotFoundException;
-import com.yong.book.book.history.History;
-import com.yong.book.book.history.HistoryRepository;
+import com.yong.book.history.History;
+import com.yong.book.history.HistoryRepository;
 import com.yong.book.member.Member;
 import com.yong.book.member.MemberService;
 

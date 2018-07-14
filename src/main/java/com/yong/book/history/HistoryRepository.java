@@ -1,10 +1,9 @@
-package com.yong.book.book.history;
+package com.yong.book.history;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
 public interface HistoryRepository extends CrudRepository<History, Long> {
-	@Override
-	List<History> findAll();
+	List<History> findByMemberId(Long id);
 }
