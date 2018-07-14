@@ -1,6 +1,7 @@
 package com.yong.book.bookmark;
 
-import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,10 +9,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -42,7 +39,8 @@ public class BookmarkControllerTest {
 
 		// 조회(추가확인)
 		mockMvc.perform(get("/bookmark")
-			.contentType(MediaType.APPLICATION_JSON))
+		.param("page", "0")
+		.param("sort", "title"))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.bookmarks.length()").value(1));
 
@@ -54,7 +52,8 @@ public class BookmarkControllerTest {
 
 		// 조회(삭제확인)
 		mockMvc.perform(get("/bookmark")
-			.contentType(MediaType.APPLICATION_JSON))
+			.param("page", "0")
+			.param("sort", "title"))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.bookmarks.length()").value(0));
 	}

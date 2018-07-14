@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yong.book.bookmark.dto.BookmarkDto;
 import com.yong.book.bookmark.dto.BookmarkDtoCollector;
 import com.yong.book.bookmark.dto.BookmarksDto;
+import com.yong.book.common.request.Request;
 import com.yong.book.login.LoginUserDetails;
 import com.yong.book.member.Member;
 import com.yong.book.member.MemberService;
@@ -32,14 +33,14 @@ public class BookmarkController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.OK)
-	public void add(@AuthenticationPrincipal LoginUserDetails loginUserDetails, @RequestBody String bookName){
+	public void add(@AuthenticationPrincipal LoginUserDetails loginUserDetails, @RequestBody String title){
 		Member member = memberService.getMember(loginUserDetails.getUsername());
-		bookmarkService.add(new Bookmark(member, bookName));
+		bookmarkService.add(new Bookmark(member, title));
 	}
 
 	@GetMapping
-	public BookmarksDto get(@AuthenticationPrincipal LoginUserDetails loginUserDetails){
-		List<Bookmark> bookmarks = bookmarkService.get(loginUserDetails.getId());
+	public BookmarksDto get(@AuthenticationPrincipal LoginUserDetails loginUserDetails, Request request){
+		List<Bookmark> bookmarks = bookmarkService.get(loginUserDetails.getId(), request);
 
 		return bookmarks.stream()
 			.map(BookmarkDto::from)

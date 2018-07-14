@@ -29,8 +29,8 @@ public class Bookmark {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "book_name", nullable = false)
-	private String bookName;
+	@Column(nullable = false)
+	private String title;
 	@Column(nullable = false)
 	private boolean deleted;
 	@ManyToOne
@@ -43,9 +43,9 @@ public class Bookmark {
 	@Column(name = "update_datetime")
 	private LocalDateTime updateDatetime;
 
-	public Bookmark(Member member, String bookName) {
+	public Bookmark(Member member, String title) {
 		this.member = member;
-		this.bookName = bookName;
+		this.title = title;
 	}
 
 	public void remove() {

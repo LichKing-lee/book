@@ -1,6 +1,7 @@
-package com.yong.book.book;
+package com.yong.book.history;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -18,10 +19,10 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @WithUserDetails("lcy0202")
-public class BookControllerTest {
+public class HistoryControllerTest {
+	private MockMvc mockMvc;
 	@Autowired
 	private WebApplicationContext context;
-	private MockMvc mockMvc;
 
 	@Before
 	public void setUp() {
@@ -29,14 +30,16 @@ public class BookControllerTest {
 	}
 
 	@Test
-	public void search() throws Exception {
+	public void test() throws Exception {
 		mockMvc.perform(get("/book/search")
-			.param("query", "미움받을 용기")
-			.param("page", "1")
-			.param("size", "2")
-			.param("category", "903")
-			.param("sort", "SALES"))
-			.andDo(print())
+			.param("query", "미움받을 용기"))
 			.andExpect(status().isOk());
+
+		mockMvc.perform(get("/history")
+			.param("page", "1")
+			.param("sort", "title"))
+			.andDo(print())
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$.histories.length()").value(5));
 	}
 }

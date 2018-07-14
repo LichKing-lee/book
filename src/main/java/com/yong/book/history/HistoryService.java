@@ -2,10 +2,14 @@ package com.yong.book.history;
 
 import static java.util.stream.Collectors.*;
 
-import java.util.Comparator;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.yong.book.common.request.Request;
 
 @Service
 public class HistoryService {
@@ -15,12 +19,14 @@ public class HistoryService {
 		this.historyRepository = historyRepository;
 	}
 
-	public List<History> getHistories(Long memberId) {
-		List<History> histories = historyRepository.findByMemberId(memberId);
+	public List<History> getHistories(Long memberId, Request request) {
+		Page<History> histories = historyRepository.findByMemberId(memberId, createPageRequest(request));
 
-		// 최신순부터 보여주기위해 역순(revresed)으로 정렬
 		return histories.stream()
-			.sorted(Comparator.comparing(History::getInsertDatetime).reversed())
 			.collect(toList());
+	}
+
+	private Pageable createPageRequest(Request request) {
+		return PageRequest.of(request.getPage(), 5, request.getDirection(), request.getSortColumn());
 	}
 }
